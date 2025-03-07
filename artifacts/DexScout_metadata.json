@@ -1,0 +1,140 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "Network",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "routerAddress",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_msg",
+						"type": "string"
+					}
+				],
+				"name": "Log",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "Start",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Stop",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Withdrawal",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"dexscout.sol": "DexScout"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"dexscout.sol": {
+			"keccak256": "0x563c6973372d0b7f598d8c9c29597ae6e0bf626d0b8de2574fe796d003b093c0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c006f59c15d24f2a92e0873bde3e2f4d0a0f90db2348a6a81a62013aec741f0",
+				"dweb:/ipfs/QmbUHHGvPJUR3soY5C7J6XBghLrdjRXGbPejgF7qQywhPR"
+			]
+		},
+		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/IUniswapV2Migrator.sol": {
+			"keccak256": "0x9b6e620ea535e967ed6f2ed27f416f57e33206540ab0b0a3bb7b5d994cc3392e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c873c6349596adcfe0c848036d647f36ba0b365f9aabab379529974ec32f336",
+				"dweb:/ipfs/QmRPk6CFPd7yXXPEbYBDrhNz8fxgaZfDkxbfXSQVJn4jeY"
+			]
+		},
+		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/V1/IUniswapV1Exchange.sol": {
+			"keccak256": "0x6d06efff676566471ad9d2c750c4a548d420ad8d15a3cb8c1e18448a2536c63f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://54b54ef3a721e0745fa628a572af368db4b6143fee0e8f692736c6214965a166",
+				"dweb:/ipfs/QmVhFWW8kQ9UHkq89rizvjw1mjvDh5LkogJsvvPhytzvqx"
+			]
+		},
+		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/V1/IUniswapV1Factory.sol": {
+			"keccak256": "0xae727cf9bdb449023f272d100dfae067f7379605a60816488b9afeb1991863ce",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40cca8114aff8e34a6975e32ee4e2b4068cbd8157d927833d85152fbafe9c6c0",
+				"dweb:/ipfs/Qmd1JzazZGoB19VWz9kcc1tdmutJQP1tgyQEACX1ihFPBP"
+			]
+		},
+		"github.com/pancakeswap/pancake-swap-periphery/blob/master/contracts/interfaces/IPancakeRouter01.sol": {
+			"keccak256": "0x1b6b32b6304839f9ae2e9ec1b102f567b2781c0afe9015c170335a520c8d812a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bff88e8021a3c8e58280f564e25c642f25f2727c3afdad4740878e59bd232f52",
+				"dweb:/ipfs/QmbjdZmzfYUvPCYUgmNWLLERpKAbeCrYDPWkZxJNAPU6bu"
+			]
+		},
+		"github.com/pancakeswap/pancake-swap-periphery/blob/master/contracts/interfaces/IPancakeRouter02.sol": {
+			"keccak256": "0x81f619281a57538eb5f583edc46d6279772379a8164d287045c2344378130fe6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8d7064e7b47b7bd5fc8d086d526a0435e7ee23c740f88c0737e1aacf47232678",
+				"dweb:/ipfs/QmZLczGuBtGdvhB5j1zv2FnsWrj1qcivBMzhzxhXh9TDup"
+			]
+		}
+	},
+	"version": 1
+}

