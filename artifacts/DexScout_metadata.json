@@ -6,22 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "Network",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "routerAddress",
-						"type": "string"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -88,11 +72,11 @@
 	},
 	"sources": {
 		"dexscout.sol": {
-			"keccak256": "0xe6f41b504500750bd45f21360b234b9c3f55d7d362475c146810a4deb92ddf4b",
+			"keccak256": "0xe164bb846e9e6cfdf9e0faa32b06d8daede820517529bb3035ab25a839255a6b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9262bc4f5df71f2ddcd819f8ec2367c082a9362c2877a4ee67cb9d547eac22e1",
-				"dweb:/ipfs/QmbrxKTtnZ8eDUVH39Bu2dogpz63dcS6vA3UZv6UUHEAD5"
+				"bzz-raw://06956b5b3a7e965d27c3fb65dff9da00bc7db7242f9d86467afb645d1b89f901",
+				"dweb:/ipfs/QmYe5UUnDKUj3JjyoEGUtgtFgmt6QMMK6JNfk8hovtBc1W"
 			]
 		},
 		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/IUniswapV2Migrator.sol": {
