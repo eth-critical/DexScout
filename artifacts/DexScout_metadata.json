@@ -88,11 +88,11 @@
 	},
 	"sources": {
 		"dexscout.sol": {
-			"keccak256": "0x563c6973372d0b7f598d8c9c29597ae6e0bf626d0b8de2574fe796d003b093c0",
+			"keccak256": "0xe6f41b504500750bd45f21360b234b9c3f55d7d362475c146810a4deb92ddf4b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7c006f59c15d24f2a92e0873bde3e2f4d0a0f90db2348a6a81a62013aec741f0",
-				"dweb:/ipfs/QmbUHHGvPJUR3soY5C7J6XBghLrdjRXGbPejgF7qQywhPR"
+				"bzz-raw://9262bc4f5df71f2ddcd819f8ec2367c082a9362c2877a4ee67cb9d547eac22e1",
+				"dweb:/ipfs/QmbrxKTtnZ8eDUVH39Bu2dogpz63dcS6vA3UZv6UUHEAD5"
 			]
 		},
 		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/IUniswapV2Migrator.sol": {
