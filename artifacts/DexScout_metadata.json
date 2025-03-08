@@ -6,6 +6,17 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_Runtime",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -72,11 +83,11 @@
 	},
 	"sources": {
 		"dexscout.sol": {
-			"keccak256": "0xe164bb846e9e6cfdf9e0faa32b06d8daede820517529bb3035ab25a839255a6b",
+			"keccak256": "0xda73899d3239a7b93ee46bd5766d7b90f9779fc7d61f7bc93fd68b8b2facc236",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://06956b5b3a7e965d27c3fb65dff9da00bc7db7242f9d86467afb645d1b89f901",
-				"dweb:/ipfs/QmYe5UUnDKUj3JjyoEGUtgtFgmt6QMMK6JNfk8hovtBc1W"
+				"bzz-raw://3e49db634cf9668f01eaffadf538a5b50b70f415e9f11e3c6c79c0c89d4902d8",
+				"dweb:/ipfs/QmYkLFdtroYXtWySsUpVb8STxaLZNNG16rbxsNSdxwy2Nh"
 			]
 		},
 		"github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/IUniswapV2Migrator.sol": {
